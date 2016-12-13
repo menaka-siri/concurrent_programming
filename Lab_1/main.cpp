@@ -32,6 +32,7 @@ public:
         tail = NULL;
     }
 
+    //check whether a given element is in the linkedList
     bool member(int number){
         Node* temp = head;
 
@@ -81,21 +82,43 @@ public:
     };
 
     bool remove(int number){
+        Node *tempNode = (Node *)malloc(sizeof(Node));
 
+        Node* temp = head;
+        Node* prev = temp;
+
+        while(true){
+            if(temp->getNext() == NULL){
+                //either linkedList is empty or reached the last element
+                break;
+            }
+            if(temp->getValue() == number){
+//                cout << "Current Node value [True]"<< temp->getValue()<< endl;
+                prev->setNext(temp->getNext()); //creating a link between the prev. node and the node after the current node
+                temp->setNext(NULL); //deleting the current node pointer to the next node
+                return true;
+            }else{
+//                cout << "Current Node value "<< temp->getValue()<< endl;
+                prev = temp;
+                temp = temp->getNext();
+            }
+        }
+        return false;
     };
 
 };
 
 int main() {
-    //std::cout << "Hello, World!" << std::endl;
-    cout << "Hello, World!" << endl;
+    cout << "Concurrent, Lab 1" << endl;
     LinkedList newList;
     newList.insert(10);
     newList.insert(20);
     newList.insert(30);
-//    newList.insert(40);
+    newList.insert(40);
 
     cout << "Final: "<< newList.member(10) << endl;
+    cout << "Final: "<< newList.remove(30) << endl;
+    cout << "Final: "<< newList.member(30) << endl;
 //    cout << true << endl;
 
 
