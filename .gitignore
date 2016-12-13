@@ -34,3 +34,4 @@
 #Idea directories
 .idea
 /cmake-build-debug
+*.orig
