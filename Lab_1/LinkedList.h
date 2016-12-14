@@ -46,26 +46,29 @@ public:
 
         while(temp->getNext() != NULL){
             if(temp->getValue() == number){
-                cout << "Current Node value [True]"<< temp->getValue() << endl;
+                //cout << "Current Node value [True]"<< temp->getValue() << endl;
                 return true;
             }else{
-                cout << "Current Node value "<< temp->getValue() << endl;
+                //cout << "Current Node value "<< temp->getValue() << endl;
                 temp = temp->getNext();
             }
         }
         if (temp->getNext() == NULL) {
             if(temp->getValue() == number){
-                cout << "Current Node value [True]"<< temp->getValue()<< endl;
+                //cout << "Current Node value [True]"<< temp->getValue()<< endl;
                 return true;
             }
         }
 
         /* log prints for debugging - starts*/
-        cout << "Current Head value [Not True]"<< head->getValue()<< endl;
-        cout << "Current Node value [Not True]"<< temp->getValue()<< endl;
-        cout << "Current Tail value [Not True]"<< tail->getValue()<< endl;
+        if (false) {
+            cout << "Current Head value [Not True]"<< head->getValue()<< endl;
+            cout << "Current Node value [Not True]"<< temp->getValue()<< endl;
+            cout << "Current Tail value [Not True]"<< tail->getValue()<< endl;
+        }
         /* log prints for debugging - ends*/
 
+//        cout << "Error[Member]: "<< number <<" element is not in the list! "<< endl;
         return false;
 
     };
@@ -83,8 +86,12 @@ public:
             head = newNode;
         }
         else{
-            tail->setNext(newNode);
-            tail = newNode;
+            if (!this->member(number)) {
+                tail->setNext(newNode);
+                tail = newNode;
+            }else{
+                cout << number <<" is already in the list!"<<endl;
+            }
         }
 
     };
@@ -112,6 +119,7 @@ public:
                 temp = temp->getNext();
             }
         }
+//        cout << "Error[Remove]: "<< number <<" element is not in the list! "<< endl;
         return false;
     };
 

@@ -5,6 +5,7 @@
 #include "LinkedList.h"
 
 #define  TEST true
+//#define  TEST false
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main() {
         newList.insert(20);
         newList.insert(30);
         newList.insert(40);
+        newList.insert(10);
 
         cout << "Member: "<< newList.member(10) << endl;
         cout << "Remove: "<< newList.remove(50) << endl;
