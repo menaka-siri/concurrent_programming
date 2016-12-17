@@ -13,7 +13,7 @@ using namespace std;
 class Node{
 private:
     int value = -1;
-    Node *next = NULL;
+    Node *next ;
 
 public:
     int getValue(){ return  value;}
@@ -29,10 +29,11 @@ public:
 
 };
 
+
 class LinkedList {
 private:
-    Node* head;
-    Node* tail;
+    Node* head = (Node *)malloc(sizeof(Node));
+    Node* tail = (Node *)malloc(sizeof(Node));
 
 public:
     LinkedList(){ //the constructor method
@@ -74,7 +75,7 @@ public:
     };
 
     //adding the new node at the end of the linkedlist
-    void insert(int number){
+    bool insert(int number){
 
         Node *newNode = (Node *)malloc(sizeof(Node));
         newNode->setValue(number);
@@ -84,13 +85,16 @@ public:
         if (head == NULL) {
             tail=newNode;
             head = newNode;
+            return true;
         }
         else{
             if (!this->member(number)) {
                 tail->setNext(newNode);
                 tail = newNode;
+                return true;
             }else{
-                cout << number <<" is already in the list!"<<endl;
+                //cout << number <<" is already in the list!"<<endl;
+                return false;
             }
         }
 
